@@ -69,6 +69,10 @@ OpenAI-compatible providers with custom models. See [providers.md](config/provid
 | [context7](mcp/context7.md)               | Up-to-date documentation for any library          |
 | [chrome-devtools](mcp/chrome-devtools.md) | Browser automation, debugging, performance audits |
 
+### LSP Servers
+
+37 built-in language servers (21 auto-installed). See [lsp/built-in.md](lsp/built-in.md) for the full list.
+
 ### Hooks
 
 Plugin hooks to intercept and modify behavior (system prompt, tool execution, shell env, etc.). See [hooks.md](config/hooks.md).
