@@ -29,6 +29,8 @@ See [cli-flags.md](commands/cli-flags.md) for the full reference (`opencode run 
 
 ## Slash Commands
 
+Available via the command palette (`Ctrl+P`) or by typing `/` in the input.
+
 | Command     | Description             | Documentation                                               |
 | ----------- | ----------------------- | ----------------------------------------------------------- |
 | `/new`      | New session             | [command-palette.md](commands/command-palette.md)           |
@@ -65,6 +67,8 @@ OpenAI-compatible providers with custom models. See [providers.md](config/provid
 
 ### MCP Servers
 
+External tool servers connected via the [Model Context Protocol](https://modelcontextprotocol.io/).
+
 | Server                                    | Description                                       |
 | ----------------------------------------- | ------------------------------------------------- |
 | [context7](mcp/context7.md)               | Up-to-date documentation for any library          |
@@ -76,11 +80,11 @@ OpenAI-compatible providers with custom models. See [providers.md](config/provid
 
 ### Hooks
 
-Plugin hooks to intercept and modify behavior (system prompt, tool execution, shell env, etc.). See [hooks.md](config/hooks.md).
+Intercept and modify agent behavior (system prompt, tool execution, shell env, etc.). See [hooks.md](config/hooks.md).
 
 ### Plugins
 
-[Superpowers](https://github.com/obra/superpowers) -- Agentic workflow plugin (brainstorm, design, plan, TDD). See [installation](config/superpowers.md) and [14 skill guides](skills/superpowers/).
+Extend OpenCode with third-party plugins installed via `opencode.json`. See [Superpowers](config/superpowers.md) -- agentic workflow (brainstorm, design, plan, TDD) with [14 skill guides](skills/superpowers/).
 
 ## Keyboard Shortcuts
 
