@@ -16,6 +16,7 @@ opencode run -c "Continue where we left off"                        # Continue l
 | Topic                 | Description                                       | Documentation                                               |
 | --------------------- | ------------------------------------------------- | ----------------------------------------------------------- |
 | Configuration file    | `opencode.json` format, locations, all keys       | [configuration.md](config/configuration.md)                 |
+| Storage & persistence | SQLite, sessions, compaction, cross-session data  | [storage.md](config/storage.md)                             |
 | AGENTS.md             | Project instructions for the agent                | [agents-md.md](config/agents-md.md)                         |
 | Providers             | Custom LLM providers setup                        | [providers.md](config/providers.md)                         |
 | Agents                | Internal agent roles (build, plan, explore, etc.) | [agents.md](config/agents.md)                               |
