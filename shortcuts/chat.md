@@ -40,3 +40,7 @@ Shortcuts specific to the main conversation page.
 | `Up`           | Go to parent session      |
 
 `<leader>` defaults to `Ctrl+X`. See [global-shortcuts.md](global-shortcuts.md) for the full reference.
+
+## See Also
+
+- [../config/storage.md](../config/storage.md) -- Sessions, compaction, persistence

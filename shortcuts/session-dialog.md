@@ -13,3 +13,7 @@ Session switcher for navigating between existing conversations.
 | `Ctrl+R` | Rename session |
 | `Ctrl+D` | Delete session |
 | `Escape` | Close dialog   |
+
+## See Also
+
+- [../config/storage.md](../config/storage.md) -- Sessions, resume, fork, child sessions
