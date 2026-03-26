@@ -80,26 +80,7 @@ Plugin hooks to intercept and modify behavior (system prompt, tool execution, sh
 
 ### Plugins
 
-#### Superpowers
-
-[Superpowers](https://github.com/obra/superpowers) forces a disciplined pipeline: brainstorm, design, plan, then implement with TDD. See [installation and overview](config/superpowers.md), or browse the [14 skill guides](skills/superpowers/).
-
-| Skill                                                                                  | Description                                   |
-| -------------------------------------------------------------------------------------- | --------------------------------------------- |
-| [brainstorming](skills/superpowers/brainstorming.md)                                   | Explore ideas before implementation           |
-| [writing-plans](skills/superpowers/writing-plans.md)                                   | Create bite-sized implementation plans        |
-| [executing-plans](skills/superpowers/executing-plans.md)                               | Execute plans task by task                    |
-| [test-driven-development](skills/superpowers/test-driven-development.md)               | RED-GREEN-REFACTOR cycle                      |
-| [systematic-debugging](skills/superpowers/systematic-debugging.md)                     | 4-phase root cause analysis                   |
-| [subagent-driven-development](skills/superpowers/subagent-driven-development.md)       | Fresh subagent per task with two-stage review |
-| [dispatching-parallel-agents](skills/superpowers/dispatching-parallel-agents.md)       | Concurrent agent tasks                        |
-| [using-git-worktrees](skills/superpowers/using-git-worktrees.md)                       | Isolated workspaces for feature work          |
-| [finishing-a-development-branch](skills/superpowers/finishing-a-development-branch.md) | Branch integration options                    |
-| [requesting-code-review](skills/superpowers/requesting-code-review.md)                 | Structured review requests                    |
-| [receiving-code-review](skills/superpowers/receiving-code-review.md)                   | Handling review feedback with rigor           |
-| [verification-before-completion](skills/superpowers/verification-before-completion.md) | Evidence before claims                        |
-| [using-superpowers](skills/superpowers/using-superpowers.md)                           | Meta-skill: skill discovery and invocation    |
-| [writing-skills](skills/superpowers/writing-skills.md)                                 | How to write new custom skills                |
+[Superpowers](https://github.com/obra/superpowers) -- Agentic workflow plugin (brainstorm, design, plan, TDD). See [installation](config/superpowers.md) and [14 skill guides](skills/superpowers/).
 
 ## Keyboard Shortcuts
 
