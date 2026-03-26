@@ -8,5 +8,7 @@
 | [providers.md](providers.md)                         | Custom LLM providers setup                  |
 | [agents.md](agents.md)                               | Agent roles (build, plan, explore, etc.)    |
 | [environment-variables.md](environment-variables.md) | System vars, feature toggles, debug         |
+| [models.md](models.md)                               | Model selection, variants, configuration    |
+| [context-window.md](context-window.md)               | Context window, token limits, monitoring    |
 | [hooks.md](hooks.md)                                 | Plugin hooks reference                      |
 | [superpowers.md](superpowers.md)                     | Superpowers plugin (brainstorm, plan, TDD)  |
