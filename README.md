@@ -13,13 +13,14 @@ opencode run -c "Continue where we left off"                        # Continue l
 
 ## Configuration
 
-| Topic                 | Description                                           | Documentation                                               |
-| --------------------- | ----------------------------------------------------- | ----------------------------------------------------------- |
-| Configuration file    | `.opencode.json` format, locations, all keys          | [configuration.md](config/configuration.md)                 |
-| Providers             | Custom LLM providers setup                            | [providers.md](config/providers.md)                         |
-| Agents                | Internal agent roles (coder, task, summarizer, title) | [agents.md](config/agents.md)                               |
-| Environment variables | System vars, debug                                    | [environment-variables.md](config/environment-variables.md) |
-| Superpowers           | Agentic workflow plugin (brainstorm, plan, TDD)       | [superpowers.md](config/superpowers.md)                     |
+| Topic                 | Description                                       | Documentation                                               |
+| --------------------- | ------------------------------------------------- | ----------------------------------------------------------- |
+| Configuration file    | `opencode.json` format, locations, all keys       | [configuration.md](config/configuration.md)                 |
+| AGENTS.md             | Project instructions for the agent                | [agents-md.md](config/agents-md.md)                         |
+| Providers             | Custom LLM providers setup                        | [providers.md](config/providers.md)                         |
+| Agents                | Internal agent roles (build, plan, explore, etc.) | [agents.md](config/agents.md)                               |
+| Environment variables | System vars, feature toggles, debug               | [environment-variables.md](config/environment-variables.md) |
+| Superpowers           | Agentic workflow plugin (brainstorm, plan, TDD)   | [superpowers.md](config/superpowers.md)                     |
 
 ## CLI Flags
 

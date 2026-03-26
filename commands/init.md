@@ -14,5 +14,6 @@ Creates or updates an `AGENTS.md` file containing build commands, code style gui
 
 ## See Also
 
+- [agents-md.md](../config/agents-md.md) -- AGENTS.md format, sections, hierarchical pattern
 - [configuration.md](../config/configuration.md) -- `instructions` setting (files loaded as context)
 - [command-palette.md](command-palette.md) -- Access via `Ctrl+P`
