@@ -69,6 +69,8 @@ opencode
 
 Inside OpenCode, run [`/init`](commands/init.md) to generate an [AGENTS.md](config/agents-md.md) for your project.
 
+> **Note**: By default the agent runs tools without confirmation. Add `"permission": "ask"` to your `opencode.json` to require approval before shell commands and file edits. See [permissions.md](config/permissions.md).
+
 > **Tip**: You can ask the agent questions about this documentation by giving it the repo URL. Example: `"Based on https://github.com/linagora/hackathon_infra_ia, which MCP servers are listed?"`
 
 ## Usage
