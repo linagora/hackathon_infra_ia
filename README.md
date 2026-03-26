@@ -2,6 +2,73 @@
 
 [OpenCode](https://opencode.ai) is a terminal-based AI coding assistant (TUI).
 
+## Quick Setup
+
+### 1. Install
+
+```bash
+curl -fsSL https://opencode.ai/install | bash                          # macOS, Linux, Windows (MSYS)
+curl -fsSL https://opencode.ai/install | bash -s -- --version 1.0.180  # Specific version
+```
+
+Other methods: `npm install -g opencode-ai`, `brew install anomalyco/tap/opencode`, or see [opencode.ai](https://opencode.ai).
+
+Installs to `~/.opencode/bin/` and adds it to your PATH (`.zshrc`, `.bashrc`, etc.). Use `--no-modify-path` to skip PATH modification.
+
+| OS      | x64 | arm64 | Install methods                       |
+| ------- | --- | ----- | ------------------------------------- |
+| macOS   | yes | yes   | curl, brew, npm, bun                  |
+| Linux   | yes | yes   | curl, npm, bun, pacman (Arch)         |
+| Windows | yes | --    | curl (MSYS/Cygwin), npm, choco, scoop |
+
+### 2. Configure a [provider](config/providers.md)
+
+Create [`~/.config/opencode/opencode.json`](config/configuration.md):
+
+```json
+{
+  "$schema": "https://opencode.ai/config.json",
+  "provider": {
+    "my-provider": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "My Provider",
+      "options": {
+        "baseURL": "http://<url>:<port>/v1"
+      },
+      "models": {
+        "model-id": {
+          "name": "Model Name",
+          "limit": { "context": 262144, "output": 16384 }
+        }
+      }
+    }
+  }
+}
+```
+
+> Replace `<url>:<port>` with your inference server address. See [providers.md](config/providers.md).
+
+### 3. Install [Superpowers](config/superpowers.md) (optional)
+
+Add to your `opencode.json`:
+
+```json
+{
+  "plugin": ["superpowers@git+https://github.com/obra/superpowers.git"]
+}
+```
+
+See [superpowers.md](config/superpowers.md) for details.
+
+### 4. Launch and initialize
+
+```bash
+cd /path/to/your/project
+opencode
+```
+
+Inside OpenCode, run [`/init`](commands/init.md) to generate an [AGENTS.md](config/agents-md.md) for your project.
+
 ## Usage
 
 ```bash
