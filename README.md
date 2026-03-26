@@ -69,6 +69,8 @@ opencode
 
 Inside OpenCode, run [`/init`](commands/init.md) to generate an [AGENTS.md](config/agents-md.md) for your project.
 
+> **Tip**: You can ask the agent questions about this documentation by giving it the repo URL. Example: `"Based on https://github.com/linagora/hackathon_infra_ia, which MCP servers are listed?"`
+
 ## Usage
 
 ```bash
