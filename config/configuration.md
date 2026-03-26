@@ -127,7 +127,7 @@ See [mcp/context7.md](../mcp/context7.md) and [mcp/chrome-devtools.md](../mcp/ch
 
 ## LSP (Language Server Protocol)
 
-OpenCode includes 37 built-in LSP servers (21 auto-installed). See [lsp/built-in.md](../lsp/built-in.md) for the full list.
+OpenCode includes 37 built-in LSP servers (21 auto-installed). See [lsp/](../lsp/) for the full list.
 
 Set `lsp` to `false` to disable all LSP servers, or configure per-language:
 

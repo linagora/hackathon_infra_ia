@@ -71,7 +71,7 @@ OpenAI-compatible providers with custom models. See [providers.md](config/provid
 
 ### LSP Servers
 
-37 built-in language servers (21 auto-installed). See [lsp/built-in.md](lsp/built-in.md) for the full list.
+37 built-in language servers (21 auto-installed). See [lsp/](lsp/) for the full list.
 
 ### Hooks
 
