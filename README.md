@@ -82,6 +82,10 @@ opencode run -m "provider/model-name" "Fix the bug"                 # Specific m
 opencode run -c "Continue where we left off"                        # Continue last session
 ```
 
+## Best Practices
+
+- [Git worktrees](best-practices/git-worktrees.md) -- Isolate feature work in parallel workspaces
+
 ## Configuration
 
 | Topic                 | Description                                       | Documentation                                               |
