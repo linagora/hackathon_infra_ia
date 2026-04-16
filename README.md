@@ -27,7 +27,13 @@ Installs to `~/.opencode/bin/` and adds it to your PATH (`.zshrc`, `.bashrc`, et
 opencode providers login
 ```
 
-This stores your API key in `~/.local/share/opencode/auth.json`. See [`opencode providers login`](commands/cli.md#opencode-providers) for all options (OAuth, API key, custom provider URL).
+Select a provider from the interactive menu and enter your API key. Example with [OpenRouter](config/providers.md#openrouter) (300+ models via a single key from [openrouter.ai](https://openrouter.ai)):
+
+```bash
+opencode models openrouter   # list available OpenRouter models
+```
+
+This stores your API key in `~/.local/share/opencode/auth.json`. See [`opencode providers login`](commands/cli.md#opencode-providers-login) for all options (OAuth, API key, custom provider URL).
 
 > To list available models after login: `opencode models` or `opencode models <provider>`. See [`opencode models`](commands/cli.md#opencode-models-provider).
 
