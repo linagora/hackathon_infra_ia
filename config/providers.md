@@ -1,6 +1,54 @@
 # Providers
 
-OpenCode supports multiple LLM providers. Configure them in `config.json` under the `provider` key.
+OpenCode supports multiple LLM providers. Configure them in `opencode.json` under the `provider` key, or authenticate interactively with `opencode providers login`.
+
+## OpenRouter
+
+[OpenRouter](https://openrouter.ai) gives access to 300+ models (Anthropic, OpenAI, Google, Meta, Mistral, …) through a single API key.
+
+### Setup
+
+```bash
+opencode providers login
+# Select "OpenRouter" → paste your API key from openrouter.ai
+```
+
+The key is stored in `~/.local/share/opencode/auth.json`. Alternatively, set the environment variable:
+
+```bash
+export OPENROUTER_API_KEY=sk-or-...
+```
+
+### Selecting a model
+
+```bash
+opencode models openrouter   # list available models
+```
+
+Or directly in the TUI with `/models`, then filter by `openrouter/`.
+
+### Example `opencode.json`
+
+```json
+{
+  "$schema": "https://opencode.ai/config.json",
+  "model": "openrouter/anthropic/claude-sonnet-4-5"
+}
+```
+
+Common models:
+
+| Model ID                                        | Description                        |
+| ----------------------------------------------- | ---------------------------------- |
+| `openrouter/anthropic/claude-sonnet-4-5`        | Claude Sonnet 4.5 (Anthropic)      |
+| `openrouter/openai/gpt-4o`                      | GPT-4o (OpenAI)                    |
+| `openrouter/google/gemini-2.0-flash-001`        | Gemini 2.0 Flash (Google)          |
+| `openrouter/meta-llama/llama-3.3-70b-instruct`  | Llama 3.3 70B (Meta, free tier)    |
+| `openrouter/mistralai/mistral-small-3.1-24b`    | Mistral Small 3.1 (Mistral AI)     |
+
+The full catalog is at [openrouter.ai/models](https://openrouter.ai/models).
+
+---
 
 ## Custom Provider Configuration
 
