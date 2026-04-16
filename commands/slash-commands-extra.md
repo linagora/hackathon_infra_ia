@@ -36,6 +36,42 @@ Less frequently used commands, available via the command palette (`Ctrl+P`) or b
 | `/init`   | Create/update AGENTS.md                |
 | `/review` | Review changes (commit, branch, or PR) |
 
+### `/review` — Argument Modes
+
+`/review` accepts an optional argument that controls what is reviewed:
+
+| Argument          | What is reviewed                                       |
+| ----------------- | ------------------------------------------------------ |
+| _(none)_          | Uncommitted changes (staged + unstaged)                |
+| `<commit-hash>`   | A specific commit by its SHA                           |
+| `<branch>`        | All commits on `<branch>` not yet merged into `main`   |
+| `<PR-URL>`        | A GitHub pull request by URL                           |
+| `<PR-number>`     | A GitHub pull request by number (requires `gh` CLI)    |
+
+Examples:
+
+```
+/review
+/review abc1234
+/review feature/my-branch
+/review https://github.com/org/repo/pull/42
+/review 42
+```
+
+### `/share` and `/unshare`
+
+`/share` publishes the current session as a public URL. Behavior depends on the `share` config:
+
+| Config value  | `/share` behavior                         |
+| ------------- | ----------------------------------------- |
+| `"manual"`    | Publishes on demand                       |
+| `"auto"`      | Already published — returns existing URL  |
+| `"disabled"`  | Returns an error                          |
+
+`/unshare` removes the public link for the current session.
+
+See [configuration.md](../config/configuration.md#share) for share configuration.
+
 ## Experimental
 
 | Command       | Description       |
