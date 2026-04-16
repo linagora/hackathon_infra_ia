@@ -12,4 +12,5 @@
 | [models.md](models.md)                               | Model selection, variants, configuration    |
 | [context-window.md](context-window.md)               | Context window, token limits, monitoring    |
 | [hooks.md](hooks.md)                                 | Plugin hooks reference                      |
+| [plugins.md](plugins.md)                             | Plugin installation and authoring guide     |
 | [superpowers.md](superpowers.md)                     | Superpowers plugin (brainstorm, plan, TDD)  |
