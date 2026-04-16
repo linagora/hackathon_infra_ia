@@ -178,6 +178,30 @@ TUI settings live in a **separate file** (`tui.json` or `tui.jsonc`):
 | `scroll_speed` | number |              | Scroll speed                    |
 | `diff_style`   | string |              | Diff display: `auto`, `stacked` |
 
+## Variable Substitution
+
+Use `{env:VAR}` to inject environment variables or `{file:path}` to read from a file anywhere in the config:
+
+```json
+{
+  "provider": {
+    "anthropic": {
+      "options": {
+        "apiKey": "{env:ANTHROPIC_API_KEY}"
+      }
+    },
+    "openai": {
+      "options": {
+        "apiKey": "{file:~/.secrets/openai-key}"
+      }
+    }
+  }
+}
+```
+
+- `{env:VAR}` -- replaced with the value of the environment variable (empty string if unset)
+- `{file:path}` -- replaced with the file contents (path can be relative to the config directory, absolute, or `~/`)
+
 ## Example Configuration
 
 ### `opencode.json` (project root)

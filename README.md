@@ -23,7 +23,13 @@ Installs to `~/.opencode/bin/` and adds it to your PATH (`.zshrc`, `.bashrc`, et
 
 ### 2. Configure a [provider](config/providers.md)
 
-Create [`~/.config/opencode/opencode.json`](config/configuration.md):
+```bash
+opencode auth login
+```
+
+This stores your API key in `~/.local/share/opencode/auth.json`.
+
+Or create [`~/.config/opencode/opencode.json`](config/configuration.md) (recommended) or `config.json` manually:
 
 ```json
 {
@@ -47,6 +53,16 @@ Create [`~/.config/opencode/opencode.json`](config/configuration.md):
 ```
 
 > Replace `<url>:<port>` with your inference server address. See [providers.md](config/providers.md).
+
+By default, credentials are read from `~/.local/share/opencode/auth.json` (populated by `opencode auth login`). Alternatively, use `{env:VAR}` to inject environment variables or `{file:path}` to read from a file:
+
+```json
+"options": {
+  "apiKey": "{env:MYPROVIDER_API_KEY}"
+}
+```
+
+See [configuration.md](config/configuration.md#variable-substitution) for details.
 
 ### 3. Install [Superpowers](config/superpowers.md) (optional)
 
