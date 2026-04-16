@@ -24,10 +24,12 @@ Installs to `~/.opencode/bin/` and adds it to your PATH (`.zshrc`, `.bashrc`, et
 ### 2. Configure a [provider](config/providers.md)
 
 ```bash
-opencode auth login
+opencode providers login
 ```
 
-This stores your API key in `~/.local/share/opencode/auth.json`.
+This stores your API key in `~/.local/share/opencode/auth.json`. See [`opencode providers login`](commands/cli.md#opencode-providers) for all options (OAuth, API key, custom provider URL).
+
+> To list available models after login: `opencode models` or `opencode models <provider>`. See [`opencode models`](commands/cli.md#opencode-models-provider).
 
 Or create [`~/.config/opencode/opencode.json`](config/configuration.md) (recommended) or `config.json` manually:
 
@@ -54,7 +56,7 @@ Or create [`~/.config/opencode/opencode.json`](config/configuration.md) (recomme
 
 > Replace `<url>:<port>` with your inference server address. See [providers.md](config/providers.md).
 
-By default, credentials are read from `~/.local/share/opencode/auth.json` (populated by `opencode auth login`). Alternatively, use `{env:VAR}` to inject environment variables or `{file:path}` to read from a file:
+By default, credentials are read from `~/.local/share/opencode/auth.json` (populated by `opencode providers login`). Alternatively, use `{env:VAR}` to inject environment variables or `{file:path}` to read from a file:
 
 ```json
 "options": {
@@ -134,7 +136,7 @@ opencode run -c "Continue where we left off"                        # Continue l
 
 ## CLI Flags
 
-See [cli-flags.md](commands/cli-flags.md) for the full reference (`opencode run [message..] --model --continue --format --file ...`).
+See [cli.md](commands/cli.md) for the full reference (`opencode run [message..] --model --continue --format --file ...`).
 
 ## Slash Commands
 
@@ -226,7 +228,7 @@ Full reference: [global-shortcuts.md](shortcuts/global-shortcuts.md)
 | `<leader>m` | List models         | [model-dialog.md](shortcuts/model-dialog.md)         |
 | `<leader>a` | List agents         | [global-shortcuts.md](shortcuts/global-shortcuts.md) |
 | `F2`        | Cycle recent models | [model-dialog.md](shortcuts/model-dialog.md)         |
-| `Tab`       | Cycle agents        | [global-shortcuts.md](shortcuts/global-shortcuts.md) |
+| `Tab`       | Cycle agents        | [agents.md](config/agents.md#selection--invocation)  |
 
 ### UI & Editor
 

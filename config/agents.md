@@ -2,6 +2,31 @@
 
 OpenCode has 7 agents. The user interacts with **build** (default) and **plan**; the others are internal or subagents.
 
+## Selection & Invocation
+
+### Switching the active agent
+
+`Tab` and `Shift+Tab` cycle through available primary agents (mode `primary` or `all`). The active agent handles all messages in the session until changed.
+
+| Shortcut    | Action                     |
+| ----------- | -------------------------- |
+| `Tab`       | Next primary agent         |
+| `Shift+Tab` | Previous primary agent     |
+| `<leader>a` | Open agent list            |
+
+### Invoking a subagent with `@`
+
+Type `@` in the prompt to open a selection menu for agents and files. Selecting an agent invokes it on the current message: the main agent delegates the task to the subagent via the `task` tool.
+
+```
+@explore List all TypeScript files in src/
+@general Research the best approach for caching
+```
+
+The agent name can also be typed directly in the text (`@explore ...`) without going through the menu.
+
+---
+
 ## Agent Roles
 
 | Agent        | Mode     | Description                                                    |

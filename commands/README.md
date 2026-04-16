@@ -2,7 +2,7 @@
 
 | File                                               | Description                     |
 | -------------------------------------------------- | ------------------------------- |
-| [cli-flags.md](cli-flags.md)                       | CLI flags (`opencode run ...`)  |
+| [cli.md](cli.md)                                  | CLI subcommands and flags       |
 | [command-palette.md](command-palette.md)           | Command palette (`Ctrl+P`)      |
 | [slash-commands-extra.md](slash-commands-extra.md) | Additional slash commands       |
 | [custom-commands.md](custom-commands.md)           | Custom `.md` commands           |
