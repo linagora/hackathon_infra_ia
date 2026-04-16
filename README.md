@@ -184,6 +184,7 @@ External tool servers connected via the [Model Context Protocol](https://modelco
 | ----------------------------------------- | ------------------------------------------------- |
 | [context7](mcp/context7.md)               | Up-to-date documentation for any library          |
 | [chrome-devtools](mcp/chrome-devtools.md) | Browser automation, debugging, performance audits |
+| [grep-app](mcp/grep-app.md)               | Code search across millions of GitHub repositories |
 
 ### LSP Servers
 
@@ -195,7 +196,9 @@ Intercept and modify agent behavior (system prompt, tool execution, shell env, e
 
 ### Plugins
 
-Extend OpenCode with third-party plugins installed via `opencode.json`. See [Superpowers](config/superpowers.md) -- agentic workflow (brainstorm, design, plan, TDD) with [14 skill guides](skills/superpowers/).
+Extend OpenCode with third-party plugins installed via `opencode.json`. See [plugins.md](config/plugins.md) for installation and authoring details.
+
+Notable plugin: [Superpowers](config/superpowers.md) — agentic workflow (brainstorm, design, plan, TDD) with [14 skill guides](skills/superpowers/).
 
 ## Keyboard Shortcuts
 
