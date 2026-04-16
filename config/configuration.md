@@ -21,35 +21,63 @@ A JSON schema is available:
 
 ## Top-Level Options
 
-| Key                  | Type     | Description                                    |
-| -------------------- | -------- | ---------------------------------------------- |
-| `model`              | string   | Default model (`provider/model` format)        |
-| `small_model`        | string   | Small model for title generation               |
-| `default_agent`      | string   | Default agent name                             |
-| `username`           | string   | Custom display username                        |
-| `logLevel`           | string   | Log level (DEBUG, INFO, WARN, ERROR)           |
-| `snapshot`           | boolean  | Enable/disable snapshot tracking               |
-| `share`              | string   | Sharing behavior: `manual`, `auto`, `disabled` |
-| `autoupdate`         | boolean  | Auto-update behavior (or `"notify"`)           |
-| `disabled_providers` | string[] | Disable auto-loaded providers                  |
-| `enabled_providers`  | string[] | Whitelist-only providers                       |
-| `instructions`       | string[] | Additional instruction files, globs, or URLs   |
+| Key                  | Type                              | Description                                                             |
+| -------------------- | --------------------------------- | ----------------------------------------------------------------------- |
+| `model`              | string                            | Default model (`provider/model` format)                                 |
+| `small_model`        | string                            | Small model for title generation                                        |
+| `default_agent`      | string                            | Default agent name                                                      |
+| `username`           | string                            | Custom display username                                                 |
+| `logLevel`           | string                            | Log level: `DEBUG`, `INFO`, `WARN`, `ERROR`                             |
+| `snapshot`           | boolean                           | Enable snapshot tracking (default: `true`). When `false`, undo/revert do not restore file changes. |
+| `share`              | `"manual"` \| `"auto"` \| `"disabled"` | Sharing behavior (see [Share](#share))                             |
+| `autoupdate`         | boolean \| `"notify"`             | Auto-update: `true` = update silently, `false` = disable, `"notify"` = prompt |
+| `disabled_providers` | string[]                          | Disable auto-loaded providers by ID                                     |
+| `enabled_providers`  | string[]                          | Whitelist-only providers — all others are ignored                       |
+| `instructions`       | string[]                          | Additional instruction files, globs, or URLs (merged with `AGENTS.md`) |
 
 ## Compaction
 
-| Key                   | Type    | Default | Description                       |
-| --------------------- | ------- | ------- | --------------------------------- |
-| `compaction.auto`     | boolean | `true`  | Auto-compact when context is full |
-| `compaction.prune`    | boolean |         | Prune old messages                |
-| `compaction.reserved` | number  |         | Reserved tokens                   |
+Controls how OpenCode handles context window limits.
+
+| Key                   | Type    | Default | Description                                                               |
+| --------------------- | ------- | ------- | ------------------------------------------------------------------------- |
+| `compaction.auto`     | boolean | `true`  | Auto-compact when context is full                                         |
+| `compaction.prune`    | boolean | `true`  | Prune old tool outputs to reclaim tokens before triggering full compaction |
+| `compaction.reserved` | number  |         | Token buffer reserved during compaction to avoid overflow mid-summary     |
+
+## Share
+
+Controls whether sessions can be shared as public URLs.
+
+| Value        | Behavior                                                          |
+| ------------ | ----------------------------------------------------------------- |
+| `"manual"`   | Sharing allowed via `/share` command or `opencode run --share`    |
+| `"auto"`     | Every new session is automatically shared on creation             |
+| `"disabled"` | Sharing disabled entirely — `/share` command returns an error     |
+
+```json
+{ "share": "manual" }
+```
+
+Can also be set via environment variable: `OPENCODE_AUTO_SHARE=1` enables auto-share.
 
 ## Instructions (Context Files)
 
-The `instructions` field replaces the old `contextPaths`. Accepts file paths, globs, and URLs.
+The `instructions` field accepts file paths, globs, and URLs. These are merged into the agent's context alongside the default `AGENTS.md` files.
 
 Default instruction files loaded automatically:
 - `AGENTS.md` (project root)
 - `~/.config/opencode/AGENTS.md` (global)
+
+```json
+{
+  "instructions": [
+    "docs/architecture.md",
+    ".opencode/context/*.md",
+    "https://example.com/context.md"
+  ]
+}
+```
 
 ## Providers
 
@@ -131,13 +159,63 @@ OpenCode includes 37 built-in LSP servers (21 auto-installed). See [lsp/](../lsp
 
 Set `lsp` to `false` to disable all LSP servers, or configure per-language:
 
-| Key                         | Type                  | Description                      |
-| --------------------------- | --------------------- | -------------------------------- |
-| `lsp.<lang>.command`        | string[]              | Command and arguments (as array) |
-| `lsp.<lang>.extensions`     | string[]              | File extensions to associate     |
-| `lsp.<lang>.disabled`       | boolean               | Disable this LSP                 |
-| `lsp.<lang>.env`            | Record<string,string> | Environment variables            |
-| `lsp.<lang>.initialization` | object                | Initialization options           |
+| Key                         | Type                  | Description                                               |
+| --------------------------- | --------------------- | --------------------------------------------------------- |
+| `lsp.<lang>.command`        | string[]              | Command and arguments (as array)                          |
+| `lsp.<lang>.extensions`     | string[]              | File extensions to associate (required for custom servers)|
+| `lsp.<lang>.disabled`       | boolean               | Disable this LSP                                          |
+| `lsp.<lang>.env`            | Record<string,string> | Environment variables                                     |
+| `lsp.<lang>.initialization` | object                | Initialization options                                    |
+
+## Formatter
+
+Override or disable the code formatter for specific languages. Set `formatter` to `false` to disable all formatting.
+
+```json
+{
+  "formatter": {
+    "typescript": {
+      "command": ["prettier", "--write", "$FILE"],
+      "extensions": [".ts", ".tsx"],
+      "environment": { "NODE_ENV": "development" }
+    },
+    "python": {
+      "disabled": true
+    }
+  }
+}
+```
+
+| Key                              | Type                  | Description                                        |
+| -------------------------------- | --------------------- | -------------------------------------------------- |
+| `formatter.<name>.command`       | string[]              | Formatter command (use `$FILE` for the file path)  |
+| `formatter.<name>.extensions`    | string[]              | File extensions this formatter applies to          |
+| `formatter.<name>.environment`   | Record<string,string> | Environment variables for the formatter process    |
+| `formatter.<name>.disabled`      | boolean               | Disable this formatter                             |
+
+## Server
+
+Persistent server configuration (applies to `opencode serve`, `opencode web`, and `opencode acp`). Command-line flags override these values.
+
+```json
+{
+  "server": {
+    "port": 4096,
+    "hostname": "127.0.0.1",
+    "mdns": false,
+    "mdnsDomain": "opencode.local",
+    "cors": []
+  }
+}
+```
+
+| Key                  | Type     | Default            | Description                                                   |
+| -------------------- | -------- | ------------------ | ------------------------------------------------------------- |
+| `server.port`        | number   | `0` (random)       | Port to listen on                                             |
+| `server.hostname`    | string   | `"127.0.0.1"`      | Hostname to listen on                                         |
+| `server.mdns`        | boolean  | `false`            | Enable mDNS service discovery (forces hostname to `0.0.0.0`) |
+| `server.mdnsDomain`  | string   | `"opencode.local"` | Custom mDNS domain name                                       |
+| `server.cors`        | string[] | `[]`               | Additional origins allowed for CORS                           |
 
 ## Skills
 
@@ -145,6 +223,12 @@ Set `lsp` to `false` to disable all LSP servers, or configure per-language:
 | -------------- | -------- | ---------------------------- |
 | `skills.paths` | string[] | Additional skill directories |
 | `skills.urls`  | string[] | Remote skill index URLs      |
+
+## Watcher
+
+| Key              | Type     | Description                                                       |
+| ---------------- | -------- | ----------------------------------------------------------------- |
+| `watcher.ignore` | string[] | File patterns to ignore in the file watcher (glob syntax)        |
 
 ## Plugins
 
@@ -154,7 +238,33 @@ Set `lsp` to `false` to disable all LSP servers, or configure per-language:
 }
 ```
 
-See [superpowers.md](superpowers.md) for the Superpowers plugin guide.
+See [plugins.md](plugins.md) for installation and authoring details.
+
+## Experimental
+
+Advanced options that may change or be removed in future versions.
+
+```json
+{
+  "experimental": {
+    "batch_tool": false,
+    "openTelemetry": false,
+    "primary_tools": ["bash", "edit"],
+    "continue_loop_on_deny": false,
+    "mcp_timeout": 5000,
+    "disable_paste_summary": false
+  }
+}
+```
+
+| Key                                     | Type     | Description                                                              |
+| --------------------------------------- | -------- | ------------------------------------------------------------------------ |
+| `experimental.batch_tool`               | boolean  | Enable the batch tool (run multiple tools in one call)                   |
+| `experimental.openTelemetry`            | boolean  | Enable OpenTelemetry spans for AI SDK calls                              |
+| `experimental.primary_tools`            | string[] | Tools restricted to primary agents only (not available to subagents)     |
+| `experimental.continue_loop_on_deny`    | boolean  | Continue the agent loop when a tool call is denied (instead of stopping) |
+| `experimental.mcp_timeout`              | number   | Timeout in milliseconds for MCP requests (default: `5000`)               |
+| `experimental.disable_paste_summary`    | boolean  | Disable the summary shown when pasting large content                     |
 
 ## TUI Configuration (tui.json)
 
@@ -164,19 +274,28 @@ TUI settings live in a **separate file** (`tui.json` or `tui.jsonc`):
 {
   "theme": "catppuccin",
   "scroll_speed": 3,
+  "scroll_acceleration": { "enabled": true },
+  "mouse": true,
   "diff_style": "stacked",
   "keybinds": {
     "session_new": "ctrl+n"
+  },
+  "plugin_enabled": {
+    "my-tui-plugin": false
   }
 }
 ```
 
-| Key            | Type   | Default      | Description                     |
-| -------------- | ------ | ------------ | ------------------------------- |
-| `theme`        | string | `"opencode"` | UI color theme                  |
-| `keybinds`     | object |              | Keybind overrides               |
-| `scroll_speed` | number |              | Scroll speed                    |
-| `diff_style`   | string |              | Diff display: `auto`, `stacked` |
+| Key                         | Type    | Default      | Description                                              |
+| --------------------------- | ------- | ------------ | -------------------------------------------------------- |
+| `theme`                     | string  | `"opencode"` | UI color theme                                           |
+| `scroll_speed`              | number  |              | Scroll speed multiplier                                  |
+| `scroll_acceleration`       | object  |              | Scroll acceleration: `{ "enabled": true/false }`        |
+| `mouse`                     | boolean | `true`       | Enable or disable mouse capture                          |
+| `diff_style`                | string  | `"auto"`     | Diff display: `"auto"` (adapts to terminal width) or `"stacked"` (single column) |
+| `keybinds`                  | object  |              | Keybind overrides (see [global-shortcuts.md](../shortcuts/global-shortcuts.md)) |
+| `plugin`                    | array   |              | TUI-specific plugins to load                             |
+| `plugin_enabled`            | object  |              | Per-plugin enable/disable: `{ "<plugin-id>": false }`   |
 
 ## Variable Substitution
 
@@ -199,8 +318,8 @@ Use `{env:VAR}` to inject environment variables or `{file:path}` to read from a 
 }
 ```
 
-- `{env:VAR}` -- replaced with the value of the environment variable (empty string if unset)
-- `{file:path}` -- replaced with the file contents (path can be relative to the config directory, absolute, or `~/`)
+- `{env:VAR}` — replaced with the value of the environment variable (empty string if unset)
+- `{file:path}` — replaced with the file contents (path can be relative to the config directory, absolute, or `~/`)
 
 ## Example Configuration
 
