@@ -212,6 +212,10 @@ $ opencode auth login --provider openai --method "API Key"
 $ opencode auth login https://my-opencode-server.com
 ```
 
+![Sélection du provider](../images/opencode_provider_login.png)
+
+![Saisie de la clé API](../images/opencode_provider_login_openrouter.png)
+
 #### `opencode providers logout`
 
 Removes a stored credential (interactive selection).
