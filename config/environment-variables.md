@@ -32,7 +32,7 @@ Environment variables used by OpenCode.
 | `OPENCODE_DISABLE_CLAUDE_CODE_PROMPT` | Disable loading ~/.claude/CLAUDE.md     |
 | `OPENCODE_DISABLE_CLAUDE_CODE_SKILLS` | Disable Claude Code skills              |
 | `OPENCODE_ENABLE_EXPERIMENTAL_MODELS` | Enable experimental models              |
-| `OPENCODE_ENABLE_EXA`                 | Enable Exa search integration           |
+| `OPENCODE_ENABLE_EXA`                 | Enable Exa-powered tools (websearch, codesearch) for non-OpenCode providers |
 | `OPENCODE_ENABLE_QUESTION_TOOL`       | Enable the question tool                |
 
 ## Experimental

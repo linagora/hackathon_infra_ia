@@ -60,7 +60,25 @@ Add to your `opencode.json`:
 
 See [superpowers.md](config/superpowers.md) for details.
 
-### 4. Launch and initialize
+### 4. Enable websearch & codesearch (optional)
+
+The `websearch` and `codesearch` tools are available by default when using the OpenCode provider (Zen/Go). If you use another provider, set `OPENCODE_ENABLE_EXA`:
+
+```bash
+OPENCODE_ENABLE_EXA=1 opencode
+```
+
+Or persist it in your shell profile (`~/.zshrc`, `~/.bashrc`):
+
+```bash
+export OPENCODE_ENABLE_EXA=1
+```
+
+> **Alternatives**: `OPENCODE_EXPERIMENTAL=true` or `OPENCODE_EXPERIMENTAL_EXA=true` also enable these tools.
+
+See [environment-variables.md](config/environment-variables.md) for all available variables.
+
+### 5. Launch and initialize
 
 ```bash
 cd /path/to/your/project
